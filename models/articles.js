@@ -6,7 +6,7 @@ var articleSchema = mongoose.Schema({
     content: String,
     urlToImage: String,
     lang: String,
-    userId: {type: mongoose.Schema.Types.ObjectId, ref: 'users'},
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
 })
 
 var articleModel = mongoose.model('articles', articleSchema)

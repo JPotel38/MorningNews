@@ -1,9 +1,8 @@
-import React, {useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import { Card, Icon, Modal} from 'antd';
+import { Card, Icon, Modal } from 'antd';
 import Nav from './Nav'
-
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
 const { Meta } = Card;
 
@@ -22,18 +21,17 @@ function ScreenMyArticles(props) {
     }
 
     findArticlesWishList()
-  },[langFiltre])
+  }, [langFiltre])
 
   var deleteArticle = async (title) => {
     props.deleteToWishList(title)
 
     const deleteReq = await fetch('/wishlist-article', {
       method: 'DELETE',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: `title=${title}&token=${props.token}`
     })
   }
-
   var filtreLang = (lang) => {
     setLangFiltre(lang)
   }
@@ -42,9 +40,7 @@ function ScreenMyArticles(props) {
     setVisible(true)
     setTitle(title)
     setContent(content)
-
   }
-
   var handleOk = e => {
     console.log(e)
     setVisible(false)
@@ -56,101 +52,90 @@ function ScreenMyArticles(props) {
   }
 
   var noArticles
-  if(props.myArticles == 0){
-    noArticles = <div style={{marginTop:"30px"}}>No Articles</div>
+  if (props.myArticles == 0) {
+    noArticles = <div style={{ marginTop: "30px" }}>No Articles</div>
   }
 
   return (
     <div>
-         
-            <Nav/>
 
-            <div style={{display:'flex', justifyContent:'center', alignItems:'center'}} className="Banner">
-              <img style={{width:'40px', margin:'10px',cursor:'pointer'}} src='/images/fr.png' onClick={() => filtreLang('fr')} />
-              <img style={{width:'40px', margin:'10px',cursor:'pointer'}} src='/images/uk.png' onClick={() => filtreLang('en')} /> 
-            </div>
+      <Nav />
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} className="Banner">
+        <img style={{ width: '40px', margin: '10px', cursor: 'pointer' }} src='/images/fr.png' onClick={() => filtreLang('fr')} />
+        <img style={{ width: '40px', margin: '10px', cursor: 'pointer' }} src='/images/uk.png' onClick={() => filtreLang('en')} />
+      </div>
 
-            {noArticles}
+      {noArticles}
 
-            <div className="Card">
-    
+      <div className="Card">
 
-            {props.myArticles.map((article,i) => (
-                <div key={i} style={{display:'flex',justifyContent:'center'}}>
+        {props.myArticles.map((article, i) => (
+          <div key={i} style={{ display: 'flex', justifyContent: 'center' }}>
 
-                  <Card
-                    
-                    style={{ 
-                    width: 300, 
-                    margin:'15px', 
-                    display:'flex',
-                    flexDirection: 'column',
-                    justifyContent:'space-between' }}
-                    cover={
-                    <img
-                        alt="example"
-                        src={article.urlToImage}
-                    />
-                    }
-                    actions={[
-                        <Icon type="read" key="ellipsis2" onClick={() => showModal(article.title,article.content)} />,
-                        <Icon type="delete" key="ellipsis" onClick={() => deleteArticle(article.title)} />
-                    ]}
-                    >
+            <Card
 
-                    <Meta
-                      title={article.title}
-                      description={article.description}
-                    />
+              style={{
+                width: 300,
+                margin: '15px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between'
+              }}
+              cover={
+                <img
+                  alt="example"
+                  src={article.urlToImage}
+                />
+              }
+              actions={[
+                <Icon type="read" key="ellipsis2" onClick={() => showModal(article.title, article.content)} />,
+                <Icon type="delete" key="ellipsis" onClick={() => deleteArticle(article.title)} />
+              ]}
+            >
 
-                  </Card>
-                  <Modal
-                    title={title}
-                    visible={visible}
-                    onOk={handleOk}
-                    onCancel={handleCancel}
-                  >
-                    <p>{title}</p>
-                  </Modal>
+              <Meta
+                title={article.title}
+                description={article.description}
+              />
 
-                </div>
+            </Card>
+            <Modal
+              title={title}
+              visible={visible}
+              onOk={handleOk}
+              onCancel={handleCancel}
+            >
+              <p>{title}</p>
+            </Modal>
 
-              ))}
+          </div>
 
-
-
-       
-
-                
-
-             </div>
-      
- 
+        ))}
 
       </div>
+    </div>
   );
 }
 
-function mapStateToProps(state){
-  return {myArticles: state.wishList, token:state.token}
+function mapStateToProps(state) {
+  return { myArticles: state.wishList, token: state.token }
 }
-
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
   return {
-    deleteToWishList: function(articleTitle){
-      dispatch({type: 'deleteArticle',
+    deleteToWishList: function (articleTitle) {
+      dispatch({
+        type: 'deleteArticle',
         title: articleTitle
       })
     },
-    saveArticles: function(articles){
-      dispatch({type: 'saveArticles',
+    saveArticles: function (articles) {
+      dispatch({
+        type: 'saveArticles',
         articles: articles
       })
     }
   }
 }
-
-
 
 export default connect(
   mapStateToProps,
