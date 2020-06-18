@@ -118,7 +118,7 @@ router.post('/wishlist-article', async function (req, res, next) {
       result = true
     }
   }
-console.log(result)
+  console.log(result)
   res.json({ result })
 })
 
