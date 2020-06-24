@@ -5,10 +5,6 @@ h4 {
   font-weight: bold
 }
 
-* {
-  background-color: #f4f6ff;
-}
-
 .Login-page{
     display: flex;
     flex-direction: row;
@@ -19,8 +15,6 @@ h4 {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    
-
     }
 
 .Login-input{
@@ -48,6 +42,7 @@ h4 {
   margin-left: 50px;
   margin-right: 50px;
   margin-top: 20px;
+  background-color: #f4f6ff;
 }
 
 .Banner {
@@ -63,7 +58,6 @@ h4 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
 }
 
 
