@@ -39,10 +39,11 @@ h4 {
 }
 
 .HomeThemes{
-  margin-left: 50px;
-  margin-right: 50px;
-  margin-top: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 20px;
   background-color: #f4f6ff;
+  height: 100vh
 }
 
 .Banner {
