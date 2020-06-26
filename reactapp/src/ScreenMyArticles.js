@@ -26,7 +26,7 @@ function ScreenMyArticles(props) {
   var deleteArticle = async (title) => {
     props.deleteToWishList(title)
 
-  const deleteReq = await fetch('/wishlist-article', {
+    const deleteReq = await fetch('/wishlist-article', {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: `title=${title}&token=${props.token}`

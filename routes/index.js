@@ -21,14 +21,14 @@ router.post('/sign-up', async function (req, res, next) {
   })
 
   if (data != null) {
-    error.push('utilisateur déjà présent')
+    error.push('Utilisateur déjà présent')
   }
 
   if (req.body.usernameFromFront == ''
     || req.body.emailFromFront == ''
     || req.body.passwordFromFront == ''
   ) {
-    error.push('champs vides')
+    error.push('Champs vides')
   }
 
 
