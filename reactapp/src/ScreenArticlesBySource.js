@@ -20,9 +20,10 @@ function ScreenArticlesBySource(props) {
       const data = await fetch(`https://newsapi.org/v2/top-headlines?sources=${props.match.params.id}&apiKey=9eb9906084b44191881f01704397af0b`,
         {
           method: 'GET',
-          headers: { "Connection": "Upgrade" },
+          headers: { "Access-Control-Allow-Origin": "*" },
           mode: 'cors',
           cache: 'default'
+          
         }
       )
       const body = await data.json()

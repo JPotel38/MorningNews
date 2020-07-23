@@ -126,6 +126,7 @@ router.get('/articlessources', function (req, res, next) {
 
   var response = request("GET", `https://newsapi.org/v2/sources?language=fr&country=fr&apiKey=9eb9906084b44191881f01704397af0b`);
   response.getBody();
+  console.log(response)
   response = JSON.parse(response.getBody());
 
   console.log(response.sources)
